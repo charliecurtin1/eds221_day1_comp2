@@ -1,0 +1,26 @@
+---
+title: "Toolik chlorophyll concentrations"
+author: "Charlie"
+format: html
+---
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+```{r}
+chlorophyll <- readr::read_csv(here::here("data",
+                                          "toolik_chlorophyll.csv"),
+                               na = ".") %>% 
+  clean_names() %>% 
+  rename(chl_a = active_chl_a_ug_l)
+```
+
+make a histogram
+
+```{r}
+ggplot(data = chlorophyll, 
+       aes(x = chl_a)) +
+  geom_histogram()
+```
